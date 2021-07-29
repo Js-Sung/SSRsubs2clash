@@ -1,0 +1,154 @@
+mixed-port: 7890
+socks-port: 7892
+allow-lan: true
+mode: Rule
+external-ui: yacd
+secret: "123456"
+external-controller: :9090
+log-level: info
+
+
+
+# 代理节点
+proxies:
+  # nodes data down here
+  # nodes data up here
+
+# 代理组策略
+proxy-groups:
+  - name: ☯ 策略选择
+    type: select
+    proxies:
+      - ✈ 故障切换
+      - ✍ 手动选择
+      - 🔮 负载均衡
+      - ✈ 延迟最低
+      - ⛳ 回国线路
+      - DIRECT
+  - name: ✍ 手动选择
+    type: select
+    proxies:
+      # nodes name down here
+      # nodes name up here
+  - url: http://www.gstatic.com/generate_204
+    interval: 500
+    name: ✈ 延迟最低
+    type: url-test
+    proxies:
+      # nodes name down here
+      # nodes name up here
+  - url: http://www.gstatic.com/generate_204
+    interval: 500
+    name: ✈ 故障切换
+    type: fallback
+    proxies:
+      # nodes name down here
+      # nodes name up here
+  - url: http://www.gstatic.com/generate_204
+    interval: 500
+    name: 🔮 负载均衡
+    type: load-balance
+    proxies:
+      # nodes name down here
+      # nodes name up here
+  - name: ☢ 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: ⛳ 回国线路
+    type: select
+    proxies:
+      # inland nodes name down here
+      # inland nodes name up here
+  - name: ✉ 信息展示
+    type: select
+    proxies:
+      # info nodes name down here
+      # info nodes name up here
+
+# 规则
+rules:
+  # 自定义
+  - DOMAIN,clash.razord.top,DIRECT
+  - DOMAIN,yacd.haishan.me,DIRECT
+  # BT客户端
+  - PROCESS-NAME,v2ray,DIRECT
+  - PROCESS-NAME,xray,DIRECT
+  - PROCESS-NAME,naive,DIRECT
+  - PROCESS-NAME,trojan,DIRECT
+  - PROCESS-NAME,trojan-go,DIRECT
+  - PROCESS-NAME,ss-local,DIRECT
+  - PROCESS-NAME,privoxy,DIRECT
+  - PROCESS-NAME,leaf,DIRECT
+  - PROCESS-NAME,v2ray.exe,DIRECT
+  - PROCESS-NAME,xray.exe,DIRECT
+  - PROCESS-NAME,naive.exe,DIRECT
+  - PROCESS-NAME,trojan.exe,DIRECT
+  - PROCESS-NAME,trojan-go.exe,DIRECT
+  - PROCESS-NAME,ss-local.exe,DIRECT
+  - PROCESS-NAME,privoxy.exe,DIRECT
+  - PROCESS-NAME,leaf.exe,DIRECT
+  - PROCESS-NAME,Surge,DIRECT
+  - PROCESS-NAME,Surge 2,DIRECT
+  - PROCESS-NAME,Surge 3,DIRECT
+  - PROCESS-NAME,Surge 4,DIRECT
+  - PROCESS-NAME,Surge%202,DIRECT
+  - PROCESS-NAME,Surge%203,DIRECT
+  - PROCESS-NAME,Surge%204,DIRECT
+  - PROCESS-NAME,Thunder,DIRECT
+  - PROCESS-NAME,DownloadService,DIRECT
+  - PROCESS-NAME,qBittorrent,DIRECT
+  - PROCESS-NAME,Transmission,DIRECT
+  - PROCESS-NAME,fdm,DIRECT
+  - PROCESS-NAME,aria2c,DIRECT
+  - PROCESS-NAME,Folx,DIRECT
+  - PROCESS-NAME,NetTransport,DIRECT
+  - PROCESS-NAME,uTorrent,DIRECT
+  - PROCESS-NAME,WebTorrent,DIRECT
+  - PROCESS-NAME,aria2c.exe,DIRECT
+  - PROCESS-NAME,BitComet.exe,DIRECT
+  - PROCESS-NAME,fdm.exe,DIRECT
+  - PROCESS-NAME,NetTransport.exe,DIRECT
+  - PROCESS-NAME,qbittorrent.exe,DIRECT
+  - PROCESS-NAME,Thunder.exe,DIRECT
+  - PROCESS-NAME,ThunderVIP.exe,DIRECT
+  - PROCESS-NAME,transmission-daemon.exe,DIRECT
+  - PROCESS-NAME,transmission-qt.exe,DIRECT
+  - PROCESS-NAME,uTorrent.exe,DIRECT
+  - PROCESS-NAME,WebTorrent.exe,DIRECT
+  # rules down here
+  # rules up here
+
+  # GeoIP China
+  - GEOIP,CN,DIRECT
+
+  - MATCH,☯ 策略选择
+
+# 不经过代理
+cfw-bypass:
+  - qq.com
+  - music.163.com
+  - "*.music.126.net"
+  - localhost
+  - 127.*
+  - 10.*
+  - 172.16.*
+  - 172.17.*
+  - 172.18.*
+  - 172.19.*
+  - 172.20.*
+  - 172.21.*
+  - 172.22.*
+  - 172.23.*
+  - 172.24.*
+  - 172.25.*
+  - 172.26.*
+  - 172.27.*
+  - 172.28.*
+  - 172.29.*
+  - 172.30.*
+  - 172.31.*
+  - 192.168.*
+  - <local>
+cfw-latency-timeout: 5000
