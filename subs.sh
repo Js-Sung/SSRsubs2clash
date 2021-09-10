@@ -285,7 +285,7 @@ function insertRules() {
 
 ####################PROGRAM START####################
 # 进入脚本所在目录
-cd "$( cd "$( dirname "$0"  )" && pwd  )"
+cd $(dirname "$0")
 
 # 订阅数据解析
 if ! nodedata=$(extractSSRsubslink)
